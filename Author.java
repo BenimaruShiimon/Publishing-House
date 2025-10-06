@@ -1,4 +1,4 @@
-public class Author{
+public class Author {
     private final String name;
     private final String surname;
     private final int rating;
@@ -23,10 +23,10 @@ public class Author{
 
     @Override
     public String toString() {
-        return "Author{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", rating=" + rating +
+        return "Author {" +
+                "name = '" + name + '\'' +
+                ", surname = '" + surname + '\'' +
+                ", rating = " + rating +
                 '}';
     }
 }

@@ -1,13 +1,14 @@
-public class Book extends Author {
+public class Book {
     private final String title;
-    private final int realiseYear;
+    private final int releaseYear;
     private final int pages;
+    private final Author author;
 
-    public Book(String name, String surname, int rating, String title, int realiseYear, int pages) {
-        super(name, surname, rating);
+    public Book(String title, int realiseYear, int pages, Author author) {
         this.title = title;
-        this.realiseYear = realiseYear;
+        this.releaseYear = realiseYear;
         this.pages = pages;
+        this.author = author;
     }
 
 
@@ -16,7 +17,7 @@ public class Book extends Author {
     }
 
     public int getRealiseYear() {
-        return realiseYear;
+        return releaseYear;
     }
 
     public int getPages() {
@@ -25,33 +26,25 @@ public class Book extends Author {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", realiseYear=" + realiseYear +
-                ", pages=" + pages +
-                "} " + super.toString();
-}
-
-
-    public String isBig(int pages) {
-        if (getPages() > 500) {
-            return "Да";
-        } else {
-            return "Нет";
-        }
+        return "Book {" +
+                "title = '" + title + '\'' +
+                ", realiseYear = " + releaseYear +
+                ", pages = " + pages +
+                ", author = " + author +
+                '}';
     }
 
-    public String matches(String word) {
-        if (word.contains(getTitle()) || word.contains(getName()) || word.contains(getSurname())) {
-            return "Да";
-        } else {
-            return "Нет";
-        }
+    public boolean isBig() {
+        return getPages() > 500;
+    }
+
+    public boolean matches(String word) {
+        return word.contains(getTitle()) || word.contains(author.getName()) || word.contains(author.getSurname());
     }
 
     public int estimatePrice(int price) {
-        int priceForPages = pages * 3 * (int) Math.floor(Math.sqrt(getRating()));
-        return (price >= 250) ? priceForPages : 250;
+        int priceForPages = pages * 3 * (int) Math.floor(Math.sqrt(author.getRating()));
+        return Math.max(price, priceForPages);
     }
 }
 
