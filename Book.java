@@ -38,8 +38,9 @@ public class Book {
         return getPages() > 500;
     }
 
-    public boolean matches(String word) {
-        return word.contains(getTitle()) || word.contains(author.getName()) || word.contains(author.getSurname());
+    public boolean matches(String wordForSearch) {
+        String word = wordForSearch.toLowerCase();
+        return getTitle().toLowerCase().contains(word) || author.getName().toLowerCase().contains(word) || author.getSurname().toLowerCase().contains(word);
     }
 
     public int estimatePrice(int price) {
